@@ -31,12 +31,14 @@ const Home: React.FC = () => {
     )
   }, [])
 
-  const handleCart = (index: number) => {
+  useEffect(() => {
+    localStorage.setItem(`@cart`, JSON.stringify(cart));
+  }, [cart]);
+
+
+  const handleCart = ( index: number ) => {
     let product = data[index]
-    let push: any = [...cart, cart.push(product)]
-    setCart(push)
-    const productStore = JSON.stringify(cart);
-    localStorage.setItem('@cart', productStore)
+    setCart(cart => [...cart,product]);
   }
 
   return(
